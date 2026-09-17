@@ -19,7 +19,6 @@ enum MonitorTaskStatus: String, Codable, CaseIterable, Sendable {
 }
 
 enum MonitorFilter: String, CaseIterable, Identifiable {
-    case all
     case running
     case needsAttention
     case awaitingReview
@@ -28,7 +27,6 @@ enum MonitorFilter: String, CaseIterable, Identifiable {
 
     var title: String {
         switch self {
-        case .all: "全部"
         case .running: "运行中"
         case .needsAttention: "需要你"
         case .awaitingReview: "待查看"
@@ -37,7 +35,6 @@ enum MonitorFilter: String, CaseIterable, Identifiable {
 
     func includes(_ task: MonitoredTask) -> Bool {
         switch self {
-        case .all: true
         case .running: task.status == .running
         case .needsAttention: task.status == .needsAttention
         case .awaitingReview: task.status == .awaitingReview

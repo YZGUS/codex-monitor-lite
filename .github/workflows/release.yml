@@ -1,0 +1,70 @@
+name: Release macOS
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag (for example v0.1.0)"
+        required: true
+        default: "v0.1.0"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-15
+    env:
+      RELEASE_TAG: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Run tests
+        run: |
+          xcodebuild \
+            -project CodexMonitorLite.xcodeproj \
+            -scheme CodexMonitorLite \
+            -configuration Debug \
+            -destination 'platform=macOS' \
+            -derivedDataPath "$RUNNER_TEMP/TestDerivedData" \
+            CODE_SIGNING_ALLOWED=NO \
+            test
+
+      - name: Build universal app
+        run: |
+          xcodebuild \
+            -project CodexMonitorLite.xcodeproj \
+            -scheme CodexMonitorLite \
+            -configuration Release \
+            -destination 'generic/platform=macOS' \
+            -derivedDataPath "$RUNNER_TEMP/ReleaseDerivedData" \
+            ARCHS='arm64 x86_64' \
+            ONLY_ACTIVE_ARCH=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Package app
+        run: |
+          APP_PATH="$RUNNER_TEMP/ReleaseDerivedData/Build/Products/Release/CodexMonitorLite.app"
+          OUTPUT_DIR="$RUNNER_TEMP/release"
+          ARCHIVE_NAME="CodexMonitorLite-${RELEASE_TAG}-macOS-universal.zip"
+          mkdir -p "$OUTPUT_DIR"
+          codesign --force --deep --sign - "$APP_PATH"
+          ditto -c -k --sequesterRsrc --keepParent "$APP_PATH" "$OUTPUT_DIR/$ARCHIVE_NAME"
+          cd "$OUTPUT_DIR"
+          shasum -a 256 "$ARCHIVE_NAME" > "$ARCHIVE_NAME.sha256"
+
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          OUTPUT_DIR="$RUNNER_TEMP/release"
+          gh release create "$RELEASE_TAG" \
+            "$OUTPUT_DIR"/* \
+            --target "$GITHUB_SHA" \
+            --title "Codex Monitor Lite $RELEASE_TAG" \
+            --generate-notes

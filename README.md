@@ -7,8 +7,9 @@
 ## 功能
 
 - **最近 24 小时**：只读取最后活动时间位于最近 24 小时内的会话，旧会话不会继续解析。
-- **四类状态**：全部、运行中、需要你、待查看。
-- **高密度菜单栏界面**：固定 320 pt 宽度，长标题、路径、分支和模型自动截断。
+- **三类状态**：运行中、需要你、待查看；已查看任务不再占用界面。
+- **高密度菜单栏界面**：固定 320 pt 宽度，一屏最多四张卡片，更多任务在列表内滚动。
+- **固定到桌面**：点击 Pin 切换为常驻浮动面板，拖动顶部空白区自由摆放，位置会自动保存。
 - **任务上下文**：显示项目、Git 分支、模型、持续时间和当前动作。
 - **快速返回 Codex**：从任务卡片直接打开对应会话。
 - **本地已读状态**：打开已完成任务后，会在本机记录为已查看。
@@ -28,6 +29,10 @@
 3. Homebrew 或系统 `PATH` 中的 `codex`
 
 ## 快速开始
+
+推荐从 [GitHub Releases](https://github.com/YZGUS/codex-monitor-lite/releases/latest) 下载最新的通用 macOS 压缩包。当前包使用临时签名、尚未经过 Apple 公证；首次运行如被系统拦截，请在 Finder 中右键应用并选择“打开”。
+
+也可以从源码构建：
 
 ```bash
 git clone https://github.com/YZGUS/codex-monitor-lite.git
@@ -52,7 +57,8 @@ open -na "$PWD/.build/DerivedData/Build/Products/Debug/CodexMonitorLite.app"
 1. 启动应用后，点击 macOS 菜单栏中的 Codex Monitor Lite 图标。
 2. 使用顶部筛选器查看运行中、需要你或待查看的任务。
 3. 点击任务卡片右下角的打开按钮返回 Codex。
-4. 点击面板外或按 `Esc` 收起面板；点击右上角电源按钮退出应用。
+4. 点击 Pin 将面板固定到桌面；固定后拖动顶部空白区选择位置，再次点击 Pin 恢复菜单栏弹窗。
+5. 未固定时，点击面板外或按 `Esc` 收起面板；点击右上角电源按钮退出应用。
 
 ### 状态含义
 
@@ -61,7 +67,7 @@ open -na "$PWD/.build/DerivedData/Build/Products/Debug/CodexMonitorLite.app"
 | 运行中 | App Server 或本地生命周期事件明确显示任务仍在执行 |
 | 需要你 | 检测到授权请求或用户输入请求 |
 | 待查看 | 任务已完成，但尚未从本工具打开查看 |
-| 已查看 | 已完成任务已被打开过，仍可在“全部”中看到 |
+| 已查看 | 已完成任务打开后从三类列表中隐藏，避免占用关注空间 |
 
 ## 隐私与数据边界
 
@@ -134,9 +140,14 @@ open -na "$APP_PATH" --args --fixture loading --show-popover
 open -na "$APP_PATH" --args --fixture error --show-popover
 open -na "$APP_PATH" --args --fixture long --show-popover
 open -na "$APP_PATH" --args --fixture many --show-popover
+open -na "$APP_PATH" --args --fixture many --start-pinned
 ```
 
 这些夹具使用独立临时存储，不会污染正式任务状态。
+
+## 发布
+
+推送 `v*` 标签，或在 GitHub Actions 中手动运行 `Release macOS`，流水线会执行测试、构建 arm64/x86_64 通用应用、临时签名并发布 ZIP 与 SHA-256 校验文件。正式分发前仍需补充 Apple Developer ID 签名与公证。
 
 ## 项目结构
 
@@ -155,5 +166,5 @@ Docs/                   # UI 验收、需求提示词和 Android/云端设计边
 ## 当前限制
 
 - Codex Desktop 的独立 App Server 无法提供所有进程内实时状态，应用会保守地组合 App Server 数据与本地生命周期证据。
-- 仓库不包含已签名或公证的发行包；本地 Release 产物不会提交到 Git。
+- GitHub Release 提供临时签名但未公证的通用 macOS 包；当前不具备无警告安装体验。
 - 云服务、Android 客户端和消息推送尚未实现，相关边界见 [`Docs/AndroidMessageCenter.md`](Docs/AndroidMessageCenter.md)。

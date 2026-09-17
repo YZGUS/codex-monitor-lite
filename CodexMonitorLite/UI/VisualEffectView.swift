@@ -19,3 +19,19 @@ struct VisualEffectView: NSViewRepresentable {
         view.state = .active
     }
 }
+
+struct WindowDragArea: NSViewRepresentable {
+    func makeNSView(context: Context) -> NSView {
+        DraggableView()
+    }
+
+    func updateNSView(_ view: NSView, context: Context) {}
+
+    private final class DraggableView: NSView {
+        override func acceptsFirstMouse(for event: NSEvent?) -> Bool { true }
+
+        override func mouseDown(with event: NSEvent) {
+            window?.performDrag(with: event)
+        }
+    }
+}

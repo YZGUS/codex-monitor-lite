@@ -3,8 +3,8 @@ import Foundation
 
 @MainActor
 final class MonitorViewModel: ObservableObject {
-    @Published var selectedFilter: MonitorFilter = .all
-    @Published var onlyActive = false
+    @Published var selectedFilter: MonitorFilter = .running
+    @Published private(set) var isPinned = false
     @Published private(set) var tasks: [MonitoredTask] = []
     @Published private(set) var connectionState: SourceConnectionState = .connecting
 
@@ -29,14 +29,14 @@ final class MonitorViewModel: ObservableObject {
     }
 
     var visibleTasks: [MonitoredTask] {
-        scopedTasks.filter(selectedFilter.includes)
+        tasks.filter(selectedFilter.includes)
     }
 
     func count(for filter: MonitorFilter) -> Int {
-        scopedTasks.filter(filter.includes).count
+        tasks.filter(filter.includes).count
     }
 
-    var scopedTaskCount: Int { scopedTasks.count }
+    var scopedTaskCount: Int { tasks.filter(\.status.isActive).count }
 
     func start() {
         guard sourceTask == nil else { return }
@@ -84,6 +84,10 @@ final class MonitorViewModel: ObservableObject {
         start()
     }
 
+    func setPinned(_ isPinned: Bool) {
+        self.isPinned = isPinned
+    }
+
     func open(_ task: MonitoredTask) {
         guard let deepLink = task.deepLink, NSWorkspace.shared.open(deepLink) else { return }
         if task.status == .awaitingReview {
@@ -97,9 +101,5 @@ final class MonitorViewModel: ObservableObject {
         sourceGeneration += 1
         sourceTask?.cancel()
         sourceTask = nil
-    }
-
-    private var scopedTasks: [MonitoredTask] {
-        tasks.filter { !onlyActive || $0.status.isActive }
     }
 }

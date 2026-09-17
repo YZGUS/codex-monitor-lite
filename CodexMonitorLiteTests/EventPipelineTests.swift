@@ -2,6 +2,13 @@ import XCTest
 @testable import CodexMonitorLite
 
 final class EventPipelineTests: XCTestCase {
+    func testMonitorExposesOnlyActionableFilters() {
+        XCTAssertEqual(
+            MonitorFilter.allCases.map(\.rawValue),
+            ["running", "needsAttention", "awaitingReview"]
+        )
+    }
+
     func testReducerMapsStateAndDeduplicatesEvent() {
         let now = Date(timeIntervalSince1970: 1_789_575_000)
         var reducer = EventReducer()

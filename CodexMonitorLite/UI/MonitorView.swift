@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MonitorView: View {
     @ObservedObject var viewModel: MonitorViewModel
+    let onTogglePin: () -> Void
     let onQuit: () -> Void
 
     @Environment(\.colorScheme) private var colorScheme
@@ -26,7 +27,7 @@ struct MonitorView: View {
             }
             .padding(12)
         }
-        .frame(minWidth: 320, idealWidth: 320, maxWidth: 320, minHeight: 320, idealHeight: 700)
+        .frame(minWidth: 320, idealWidth: 320, maxWidth: 320, minHeight: 320, idealHeight: 590)
         .preferredColorScheme(.dark)
     }
 
@@ -42,9 +43,20 @@ struct MonitorView: View {
                 .font(.system(size: 11, weight: .medium))
                 .foregroundStyle(.secondary)
 
-            Spacer()
+            if viewModel.isPinned {
+                WindowDragArea()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .accessibilityHidden(true)
+            } else {
+                Spacer()
+            }
 
             iconButton("arrow.clockwise", help: "重新连接") { viewModel.retry() }
+            iconButton(
+                viewModel.isPinned ? "pin.slash" : "pin",
+                help: viewModel.isPinned ? "取消固定到桌面" : "固定到桌面",
+                action: onTogglePin
+            )
             iconButton("power", help: "退出 Codex Monitor Lite") { onQuit() }
         }
         .frame(height: 32)
@@ -58,11 +70,9 @@ struct MonitorView: View {
                     viewModel.selectedFilter = filter
                 } label: {
                     HStack(spacing: 3) {
-                        if filter != .all {
-                            Circle()
-                                .fill(filterAccent(filter))
-                                .frame(width: 7, height: 7)
-                        }
+                        Circle()
+                            .fill(filterAccent(filter))
+                            .frame(width: 7, height: 7)
                         Text(filter.title)
                         Text(compactCount(viewModel.count(for: filter)))
                             .fontDesign(.monospaced)
@@ -154,14 +164,6 @@ struct MonitorView: View {
             Text("最近 24h")
                 .font(.system(size: 10))
                 .foregroundStyle(.tertiary)
-            Text("活跃")
-                .font(.system(size: 11))
-                .foregroundStyle(.secondary)
-            Toggle("", isOn: $viewModel.onlyActive)
-                .labelsHidden()
-                .toggleStyle(.switch)
-                .controlSize(.small)
-                .accessibilityLabel("仅显示活跃会话")
         }
         .frame(height: 28)
     }
@@ -176,7 +178,6 @@ struct MonitorView: View {
 
     private func filterAccent(_ filter: MonitorFilter) -> Color {
         switch filter {
-        case .all: .clear
         case .running: MonitorPalette.running
         case .needsAttention: MonitorPalette.attention
         case .awaitingReview: MonitorPalette.review
