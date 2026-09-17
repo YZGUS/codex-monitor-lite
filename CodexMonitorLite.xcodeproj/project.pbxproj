@@ -1,0 +1,169 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B10000000000000000000001 /* CodexMonitorLiteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10000000000000000000001 /* CodexMonitorLiteApp.swift */; };
+		B10000000000000000000002 /* MonitorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10000000000000000000002 /* MonitorViewModel.swift */; };
+		B10000000000000000000003 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10000000000000000000003 /* Models.swift */; };
+		B10000000000000000000004 /* EventTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10000000000000000000004 /* EventTime.swift */; };
+		B10000000000000000000005 /* EventPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10000000000000000000005 /* EventPipeline.swift */; };
+		B10000000000000000000006 /* JSONTaskStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10000000000000000000006 /* JSONTaskStore.swift */; };
+		B10000000000000000000007 /* CodexSourceAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10000000000000000000007 /* CodexSourceAdapter.swift */; };
+		B10000000000000000000008 /* FixtureSourceAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10000000000000000000008 /* FixtureSourceAdapter.swift */; };
+		B10000000000000000000009 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10000000000000000000009 /* VisualEffectView.swift */; };
+		B1000000000000000000000A /* MonitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1000000000000000000000A /* MonitorView.swift */; };
+		B1000000000000000000000B /* EventTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1000000000000000000000B /* EventTimeTests.swift */; };
+		B1000000000000000000000C /* EventPipelineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1000000000000000000000C /* EventPipelineTests.swift */; };
+		B1000000000000000000000D /* EventStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1000000000000000000000D /* EventStoreTests.swift */; };
+		B1000000000000000000000E /* CodexAdapterFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1000000000000000000000E /* CodexAdapterFixtureTests.swift */; };
+		B1000000000000000000000F /* CodexAppServerLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1000000000000000000000F /* CodexAppServerLiveTests.swift */; };
+		B10000000000000000000010 /* CodexThreadList.json in Resources */ = {isa = PBXBuildFile; fileRef = C10000000000000000000010 /* CodexThreadList.json */; };
+		B10000000000000000000011 /* CodexRolloutRunning.jsonl in Resources */ = {isa = PBXBuildFile; fileRef = C10000000000000000000011 /* CodexRolloutRunning.jsonl */; };
+		B10000000000000000000012 /* CodexRolloutCompleted.jsonl in Resources */ = {isa = PBXBuildFile; fileRef = C10000000000000000000012 /* CodexRolloutCompleted.jsonl */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		H10000000000000000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A00000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E10000000000000000000001;
+			remoteInfo = CodexMonitorLite;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C10000000000000000000001 /* CodexMonitorLiteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodexMonitorLiteApp.swift; sourceTree = "<group>"; };
+		C10000000000000000000002 /* MonitorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorViewModel.swift; sourceTree = "<group>"; };
+		C10000000000000000000003 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		C10000000000000000000004 /* EventTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTime.swift; sourceTree = "<group>"; };
+		C10000000000000000000005 /* EventPipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPipeline.swift; sourceTree = "<group>"; };
+		C10000000000000000000006 /* JSONTaskStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONTaskStore.swift; sourceTree = "<group>"; };
+		C10000000000000000000007 /* CodexSourceAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodexSourceAdapter.swift; sourceTree = "<group>"; };
+		C10000000000000000000008 /* FixtureSourceAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureSourceAdapter.swift; sourceTree = "<group>"; };
+		C10000000000000000000009 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
+		C1000000000000000000000A /* MonitorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorView.swift; sourceTree = "<group>"; };
+		C1000000000000000000000B /* EventTimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTimeTests.swift; sourceTree = "<group>"; };
+		C1000000000000000000000C /* EventPipelineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPipelineTests.swift; sourceTree = "<group>"; };
+		C1000000000000000000000D /* EventStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStoreTests.swift; sourceTree = "<group>"; };
+		C1000000000000000000000E /* CodexAdapterFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodexAdapterFixtureTests.swift; sourceTree = "<group>"; };
+		C1000000000000000000000F /* CodexAppServerLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodexAppServerLiveTests.swift; sourceTree = "<group>"; };
+		C10000000000000000000010 /* CodexThreadList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CodexThreadList.json; sourceTree = "<group>"; };
+		C10000000000000000000011 /* CodexRolloutRunning.jsonl */ = {isa = PBXFileReference; lastKnownFileType = text; path = CodexRolloutRunning.jsonl; sourceTree = "<group>"; };
+		C10000000000000000000012 /* CodexRolloutCompleted.jsonl */ = {isa = PBXFileReference; lastKnownFileType = text; path = CodexRolloutCompleted.jsonl; sourceTree = "<group>"; };
+		C10000000000000000000020 /* CodexMonitorLite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodexMonitorLite.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C10000000000000000000021 /* CodexMonitorLiteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CodexMonitorLiteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D10000000000000000000001 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		D10000000000000000000002 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A00000000000000000000002 = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000004 /* CodexMonitorLite */,
+				A0000000000000000000000A /* CodexMonitorLiteTests */,
+				A00000000000000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A00000000000000000000003 /* Products */ = {isa = PBXGroup; children = (C10000000000000000000020 /* CodexMonitorLite.app */, C10000000000000000000021 /* CodexMonitorLiteTests.xctest */); name = Products; sourceTree = "<group>"; };
+		A00000000000000000000004 /* CodexMonitorLite */ = {isa = PBXGroup; children = (A00000000000000000000005 /* App */, A00000000000000000000006 /* Core */, A00000000000000000000007 /* Sources */, A00000000000000000000008 /* Persistence */, A00000000000000000000009 /* UI */); path = CodexMonitorLite; sourceTree = "<group>"; };
+		A00000000000000000000005 /* App */ = {isa = PBXGroup; children = (C10000000000000000000001 /* CodexMonitorLiteApp.swift */, C10000000000000000000002 /* MonitorViewModel.swift */); path = App; sourceTree = "<group>"; };
+		A00000000000000000000006 /* Core */ = {isa = PBXGroup; children = (C10000000000000000000003 /* Models.swift */, C10000000000000000000004 /* EventTime.swift */, C10000000000000000000005 /* EventPipeline.swift */); path = Core; sourceTree = "<group>"; };
+		A00000000000000000000007 /* Sources */ = {isa = PBXGroup; children = (C10000000000000000000007 /* CodexSourceAdapter.swift */, C10000000000000000000008 /* FixtureSourceAdapter.swift */); path = Sources; sourceTree = "<group>"; };
+		A00000000000000000000008 /* Persistence */ = {isa = PBXGroup; children = (C10000000000000000000006 /* JSONTaskStore.swift */); path = Persistence; sourceTree = "<group>"; };
+		A00000000000000000000009 /* UI */ = {isa = PBXGroup; children = (C10000000000000000000009 /* VisualEffectView.swift */, C1000000000000000000000A /* MonitorView.swift */); path = UI; sourceTree = "<group>"; };
+		A0000000000000000000000A /* CodexMonitorLiteTests */ = {isa = PBXGroup; children = (C1000000000000000000000B /* EventTimeTests.swift */, C1000000000000000000000C /* EventPipelineTests.swift */, C1000000000000000000000D /* EventStoreTests.swift */, C1000000000000000000000E /* CodexAdapterFixtureTests.swift */, C1000000000000000000000F /* CodexAppServerLiveTests.swift */, A0000000000000000000000B /* Fixtures */); path = CodexMonitorLiteTests; sourceTree = "<group>"; };
+		A0000000000000000000000B /* Fixtures */ = {isa = PBXGroup; children = (C10000000000000000000010 /* CodexThreadList.json */, C10000000000000000000011 /* CodexRolloutRunning.jsonl */, C10000000000000000000012 /* CodexRolloutCompleted.jsonl */); path = Fixtures; sourceTree = "<group>"; };
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E10000000000000000000001 /* CodexMonitorLite */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F10000000000000000000001 /* Build configuration list for PBXNativeTarget "CodexMonitorLite" */;
+			buildPhases = (D10000000000000000000003 /* Sources */, D10000000000000000000001 /* Frameworks */, D10000000000000000000005 /* Resources */);
+			buildRules = ();
+			dependencies = ();
+			name = CodexMonitorLite;
+			productName = CodexMonitorLite;
+			productReference = C10000000000000000000020 /* CodexMonitorLite.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E10000000000000000000002 /* CodexMonitorLiteTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F10000000000000000000002 /* Build configuration list for PBXNativeTarget "CodexMonitorLiteTests" */;
+			buildPhases = (D10000000000000000000004 /* Sources */, D10000000000000000000002 /* Frameworks */, D10000000000000000000006 /* Resources */);
+			buildRules = ();
+			dependencies = (H10000000000000000000002 /* PBXTargetDependency */);
+			name = CodexMonitorLiteTests;
+			productName = CodexMonitorLiteTests;
+			productReference = C10000000000000000000021 /* CodexMonitorLiteTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A00000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					E10000000000000000000001 = {CreatedOnToolsVersion = 26.0;};
+					E10000000000000000000002 = {CreatedOnToolsVersion = 26.0; TestTargetID = E10000000000000000000001;};
+				};
+			};
+			buildConfigurationList = F10000000000000000000003 /* Build configuration list for PBXProject "CodexMonitorLite" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (en, Base);
+			mainGroup = A00000000000000000000002;
+			productRefGroup = A00000000000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (E10000000000000000000001 /* CodexMonitorLite */, E10000000000000000000002 /* CodexMonitorLiteTests */);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D10000000000000000000005 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		D10000000000000000000006 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (B10000000000000000000010 /* CodexThreadList.json in Resources */, B10000000000000000000011 /* CodexRolloutRunning.jsonl in Resources */, B10000000000000000000012 /* CodexRolloutCompleted.jsonl in Resources */); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D10000000000000000000003 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (B10000000000000000000001, B10000000000000000000002, B10000000000000000000003, B10000000000000000000004, B10000000000000000000005, B10000000000000000000006, B10000000000000000000007, B10000000000000000000008, B10000000000000000000009, B1000000000000000000000A); runOnlyForDeploymentPostprocessing = 0; };
+		D10000000000000000000004 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (B1000000000000000000000B, B1000000000000000000000C, B1000000000000000000000D, B1000000000000000000000E, B1000000000000000000000F); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		H10000000000000000000002 /* PBXTargetDependency */ = {isa = PBXTargetDependency; target = E10000000000000000000001 /* CodexMonitorLite */; targetProxy = H10000000000000000000001 /* PBXContainerItemProxy */; };
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		G10000000000000000000001 /* Debug */ = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; CLANG_ENABLE_OBJC_ARC = YES; COPY_PHASE_STRIP = NO; DEBUG_INFORMATION_FORMAT = dwarf; ENABLE_TESTABILITY = YES; GCC_C_LANGUAGE_STANDARD = gnu17; GCC_OPTIMIZATION_LEVEL = 0; MACOSX_DEPLOYMENT_TARGET = 14.0; ONLY_ACTIVE_ARCH = YES; SDKROOT = macosx; SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)"; SWIFT_OPTIMIZATION_LEVEL = "-Onone"; SWIFT_VERSION = 5.0; }; name = Debug; };
+		G10000000000000000000002 /* Release */ = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; CLANG_ENABLE_OBJC_ARC = YES; COPY_PHASE_STRIP = YES; DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym"; GCC_C_LANGUAGE_STANDARD = gnu17; MACOSX_DEPLOYMENT_TARGET = 14.0; SDKROOT = macosx; SWIFT_COMPILATION_MODE = wholemodule; SWIFT_OPTIMIZATION_LEVEL = "-O"; SWIFT_VERSION = 5.0; }; name = Release; };
+		G10000000000000000000003 /* Debug */ = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; ENABLE_APP_SANDBOX = NO; ENABLE_HARDENED_RUNTIME = YES; GENERATE_INFOPLIST_FILE = YES; INFOPLIST_KEY_CFBundleDisplayName = "Codex Monitor Lite"; INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools"; INFOPLIST_KEY_LSUIElement = YES; LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/../Frameworks"); MARKETING_VERSION = 0.1.0; PRODUCT_BUNDLE_IDENTIFIER = "com.yzgus.codex-monitor-lite"; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_EMIT_LOC_STRINGS = YES; SWIFT_VERSION = 5.0; }; name = Debug; };
+		G10000000000000000000004 /* Release */ = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; ENABLE_APP_SANDBOX = NO; ENABLE_HARDENED_RUNTIME = YES; GENERATE_INFOPLIST_FILE = YES; INFOPLIST_KEY_CFBundleDisplayName = "Codex Monitor Lite"; INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools"; INFOPLIST_KEY_LSUIElement = YES; LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/../Frameworks"); MARKETING_VERSION = 0.1.0; PRODUCT_BUNDLE_IDENTIFIER = "com.yzgus.codex-monitor-lite"; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_EMIT_LOC_STRINGS = YES; SWIFT_VERSION = 5.0; }; name = Release; };
+		G10000000000000000000005 /* Debug */ = {isa = XCBuildConfiguration; buildSettings = {BUNDLE_LOADER = "$(TEST_HOST)"; CODE_SIGN_STYLE = Automatic; GENERATE_INFOPLIST_FILE = YES; MACOSX_DEPLOYMENT_TARGET = 14.0; PRODUCT_BUNDLE_IDENTIFIER = "com.yzgus.codex-monitor-lite.tests"; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_VERSION = 5.0; TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CodexMonitorLite.app/Contents/MacOS/CodexMonitorLite"; }; name = Debug; };
+		G10000000000000000000006 /* Release */ = {isa = XCBuildConfiguration; buildSettings = {BUNDLE_LOADER = "$(TEST_HOST)"; CODE_SIGN_STYLE = Automatic; GENERATE_INFOPLIST_FILE = YES; MACOSX_DEPLOYMENT_TARGET = 14.0; PRODUCT_BUNDLE_IDENTIFIER = "com.yzgus.codex-monitor-lite.tests"; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_VERSION = 5.0; TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CodexMonitorLite.app/Contents/MacOS/CodexMonitorLite"; }; name = Release; };
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F10000000000000000000001 /* Build configuration list for PBXNativeTarget "CodexMonitorLite" */ = {isa = XCConfigurationList; buildConfigurations = (G10000000000000000000003 /* Debug */, G10000000000000000000004 /* Release */); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		F10000000000000000000002 /* Build configuration list for PBXNativeTarget "CodexMonitorLiteTests" */ = {isa = XCConfigurationList; buildConfigurations = (G10000000000000000000005 /* Debug */, G10000000000000000000006 /* Release */); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		F10000000000000000000003 /* Build configuration list for PBXProject "CodexMonitorLite" */ = {isa = XCConfigurationList; buildConfigurations = (G10000000000000000000001 /* Debug */, G10000000000000000000002 /* Release */); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+/* End XCConfigurationList section */
+	};
+	rootObject = A00000000000000000000001 /* Project object */;
+}

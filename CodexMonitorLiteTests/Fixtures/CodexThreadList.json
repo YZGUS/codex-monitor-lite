@@ -1,0 +1,27 @@
+{
+  "id": 2,
+  "result": {
+    "data": [
+      {
+        "id": "thread-1",
+        "name": "调研 Codex Hook",
+        "cwd": "/Users/example/work/monitor-center",
+        "model": "gpt-test",
+        "updatedAt": 1789575000,
+        "status": { "type": "notLoaded" },
+        "path": "/tmp/CodexRolloutRunning.jsonl",
+        "gitInfo": { "branch": "main" }
+      },
+      {
+        "id": "thread-2",
+        "name": "检查构建",
+        "cwd": "/Users/example/work/web-console",
+        "model": null,
+        "updatedAt": 1789574900,
+        "status": { "type": "active", "activeFlags": ["waitingOnApproval"] },
+        "path": null,
+        "gitInfo": null
+      }
+    ]
+  }
+}
