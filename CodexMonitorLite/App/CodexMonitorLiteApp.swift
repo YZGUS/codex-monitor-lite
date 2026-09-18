@@ -22,8 +22,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var pinnedPanel: NSPanel?
     private var hostingController: NSHostingController<MonitorView>?
     private var viewModel: MonitorViewModel?
+    private var lanSharing: LANSharingController?
     private var sizeCancellable: AnyCancellable?
-    private var preferredContentHeight: CGFloat = 590
+    private var lanTaskCancellable: AnyCancellable?
+    private var preferredContentHeight: CGFloat = 478
     private var isFixtureMode = false
 
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -40,7 +42,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             return JSONTaskStore(fileURL: temporaryRoot.appendingPathComponent("state.json"))
         } ?? JSONTaskStore()
         let model = MonitorViewModel(adapter: adapter, store: store)
+        let lanSharing = LANSharingController(persistenceEnabled: !isFixtureMode)
         viewModel = model
+        self.lanSharing = lanSharing
         let shouldStartPinned = isFixtureMode
             ? arguments.contains("--start-pinned")
             : UserDefaults.standard.bool(forKey: pinnedPreferenceKey)
@@ -50,13 +54,24 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             model.$connectionState,
             model.$selectedFilter
         )
-            .sink { [weak self, weak model] _, connectionState, _ in
+            .sink { [weak self, weak model] _, _, _ in
                 guard let self, let model else { return }
-                self.resizeContent(taskCount: model.visibleTasks.count, connectionState: connectionState)
+                DispatchQueue.main.async { [weak self, weak model] in
+                    guard let self, let model else { return }
+                    self.resizeContent(
+                        taskCount: model.visibleTasks.count,
+                        connectionState: model.connectionState
+                    )
+                }
+            }
+        lanTaskCancellable = model.$tasks
+            .sink { [weak lanSharing] tasks in
+                lanSharing?.update(tasks: tasks)
             }
 
         let root = MonitorView(
             viewModel: model,
+            lanSharing: lanSharing,
             onTogglePin: { [weak self] in self?.togglePinned() },
             onQuit: { NSApp.terminate(nil) }
         )
@@ -87,6 +102,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(_ notification: Notification) {
         viewModel?.stop()
+        lanSharing?.stopForTermination()
     }
 
     @objc private func togglePopover(_ sender: Any?) {
@@ -100,7 +116,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private func showPopover() {
         guard let button = statusItem?.button else { return }
         let screen = button.window?.screen ?? NSScreen.main
-        let maximumHeight = max(320, (screen?.visibleFrame.height ?? 720) - 24)
+        let maximumHeight = max(280, (screen?.visibleFrame.height ?? 720) - 24)
         popover.contentSize = NSSize(width: popoverWidth, height: min(preferredContentHeight, maximumHeight))
         popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
         NSApp.activate(ignoringOtherApps: true)
@@ -120,15 +136,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private func resizeContent(taskCount: Int, connectionState: SourceConnectionState) {
         let bannerHeight: CGFloat = if case .failed = connectionState { 44 } else { 0 }
         if taskCount == 0 {
-            preferredContentHeight = 320 + bannerHeight
+            preferredContentHeight = 280 + bannerHeight
         } else {
             preferredContentHeight = min(
-                634,
-                max(320, 150 + CGFloat(min(taskCount, 4)) * 110 + bannerHeight)
+                522,
+                max(280, 126 + CGFloat(min(taskCount, 4)) * 88 + bannerHeight)
             )
         }
         if popover.isShown {
-            let maximumHeight = max(320, (statusItem?.button?.window?.screen?.visibleFrame.height ?? 720) - 24)
+            let maximumHeight = max(280, (statusItem?.button?.window?.screen?.visibleFrame.height ?? 720) - 24)
             popover.contentSize.height = min(preferredContentHeight, maximumHeight)
         }
         resizePinnedPanelIfNeeded()
@@ -207,12 +223,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func resizePinnedPanelIfNeeded() {
         guard viewModel?.isPinned == true, let panel = pinnedPanel else { return }
-        let maximumHeight = max(320, (panel.screen?.visibleFrame.height ?? 720) - 24)
+        let visibleFrame = panel.screen?.visibleFrame ?? NSScreen.main?.visibleFrame ?? NSRect(x: 0, y: 0, width: 1_280, height: 720)
+        let maximumHeight = max(280, visibleFrame.height - 24)
         let height = min(preferredContentHeight, maximumHeight)
         var frame = panel.frame
         let top = frame.maxY
         frame.size = NSSize(width: popoverWidth, height: height)
-        frame.origin.y = top - height
+        frame.origin.x = min(max(frame.origin.x, visibleFrame.minX), visibleFrame.maxX - popoverWidth)
+        frame.origin.y = min(max(top - height, visibleFrame.minY), visibleFrame.maxY - height)
         panel.setFrame(frame, display: true)
     }
 

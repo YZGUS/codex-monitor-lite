@@ -13,6 +13,11 @@ Artifacts/
 *.xcarchive
 *.dSYM
 
+# Android / Gradle
+android/.gradle/
+android/**/build/
+android/local.properties
+
 # Swift Package Manager
 .swiftpm/
 Packages/
